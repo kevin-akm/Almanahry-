@@ -12,7 +12,8 @@
 #hero,
 .hero-visual,
 .offer-card {
-  position: relative
+  position: relative,
+  
 }
 
 #hero,
@@ -463,8 +464,8 @@ h1 em {
 .product-img img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  display: block
+  object-fit: fill;
+  display: block;
 }
 
 .product-body {
@@ -862,4 +863,83 @@ footer {
     animation: none !important;
     transition: none !important
   }
+}
+
+/* Initial hidden state */
+.animate {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.35s ease-out,
+              transform 0.35s ease-out;
+}
+
+.animate.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hero entrance */
+.hero-content {
+  animation: heroFade .5s ease forwards;
+}
+
+.hero-visual {
+  animation: heroSlide .6s ease forwards;
+}
+
+@keyframes heroFade {
+  from {
+    opacity: 0;
+    transform: translateY(35px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroSlide {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Floating effect for featured laptop */
+.device-card.featured {
+  animation: floating 4s ease-in-out infinite;
+}
+
+@keyframes floating {
+  0%,100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* Shine effect on offer cards */
+.offer-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,.08),
+    transparent
+  );
+  transition: left .8s ease;
+}
+
+.offer-card:hover::before {
+  left: 150%;
 }
